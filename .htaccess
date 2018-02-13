@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteCond %{HTTP:X-Forwarded-Proto} =http
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
+ErrorDocument 404 /index.html
+ErrorDocument 403 /index.html
+ErrorDocument 402 /index.html
+ErrorDocument 401 /index.html
+<IfModule headers_module>
+  header set X-Clacks-Overhead "GNU Joan, and John Hughes"
+</IfModule>
